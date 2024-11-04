@@ -1,7 +1,5 @@
 import java.util.*;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class One {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -22,12 +20,12 @@ public class One {
 
         Collections.sort(cores);
         System.out.println("\nCores ordenadas por ordem alfabética.");
-        
+        Iterator<String> iterator1 = cores.iterator();
 
-
-
+        while (iterator1.hasNext()){
+            String color = iterator1.next();
+            System.out.println(color);
+        }
 
     }
-
-
 }
