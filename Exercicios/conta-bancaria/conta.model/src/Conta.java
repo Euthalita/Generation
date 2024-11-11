@@ -1,10 +1,11 @@
 import java.util.Scanner;
 
 public class Conta {
-    public int numeroConta;
-    public float saldo;
-    public String agencia;
-    public int tipoConta;
+    private int numeroConta;
+    private float saldo;
+    private String agencia;
+    private int tipoConta;
+    private String titular;
 
     public Conta(){
 
@@ -42,6 +43,14 @@ public class Conta {
         this.tipoConta = tipoConta;
     }
 
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
     public void realizarLogin(){
         Scanner scanner = new Scanner(System.in);
 
@@ -54,9 +63,19 @@ public class Conta {
         System.out.println("Digite 1 para conta corrente:\nDigite 2 para conta poupança:");
         tipoConta = scanner.nextInt();
 
+
     }
 
     public void exibirLogin(){
         System.out.println("Seja bem vindo(a)!!!\nLogin realizado com sucesso!!!");
     }
+
+    public void sacar(){
+
+    }
+
+    public void depositar(){
+
+    }
+
 }

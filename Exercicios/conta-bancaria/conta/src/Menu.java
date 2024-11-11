@@ -5,7 +5,20 @@ public class Menu {
         int seletor;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Olá! Seja bem vindo!\nDigite 1 para criar uma conta.\nDigite 2 para fazer o login.");
+        System.out.println("********************************************\n" +
+                "Olá! Seja bem vindo!\n" +
+                "1- Criar uma conta.\n" +
+                "2- Listar todas as contas\n" +
+                "3- Buscar conta por número\n" +
+                "4- Atualizar dados da conta\n"+
+                "5- Apagar conta\n"+
+                "6- Sacar\n" +
+                "7- Depositar\n" +
+                "8- Transferir valores entre contas\n" +
+                "9- Sair\n" +
+                "Entre com uma opção: "
+
+        );
         seletor = scanner.nextInt();
 
         switch (seletor) {
@@ -21,6 +34,7 @@ public class Menu {
 
                 cliente1.realizarLogin();
                 cliente1.exibirLogin();
+
         }
     }
 }
