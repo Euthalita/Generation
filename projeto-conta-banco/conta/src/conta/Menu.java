@@ -18,7 +18,7 @@ public class Menu {
 
         int opcao, numero, agencia, tipo, aniversario;
         String titular;
-        float saldo, limite, valor;
+        float saldo, limite, valor, numeroDestino;
 
 
         ContaCorrente c1 = new ContaCorrente(contas.gerarNumero(), 4312, 1, "Ana Maria", 4000f, 400);
@@ -31,9 +31,9 @@ public class Menu {
         contas.cadastrar(c4);
 
         while (true) {
-            System.out.println("********************************************\n" +
+            System.out.println(Cores.TEXT_PURPLE_BOLD+"********************************************\n" +
                     "            BANCO SOULAR            \n" +
-                    "********************************************\n" +
+                    "********************************************\n" +Cores.TEXT_RESET+
                     "         Olá! Seja bem vindo!\n" +
                     "1- Criar uma conta\n" +
                     "2- Listar todas as contas\n" +
@@ -43,7 +43,7 @@ public class Menu {
                     "6- Sacar\n" +
                     "7- Depositar\n" +
                     "8- Transferir valores entre contas\n" +
-                    "9- Sair\n" +
+                    "9- Sair\n" + Cores.TEXT_PURPLE_BOLD_BRIGHT+
                     "********************************************\n" +
                     "Entre com uma opção: \n"
 
@@ -166,10 +166,33 @@ public class Menu {
                     keyPress();
                     break;
                 case 7:
-                    System.out.println();
+                    System.out.println("Deposito: ");
+                    System.out.println("Digite o número da conta: ");
+                    numero = scanner.nextInt();
+
+                    do{
+                        System.out.println("Digite o valor do depósito: ");
+                        valor = scanner.nextFloat();
+                    }while (valor <= 0);
+
+                    contas.depositar(numero, valor);
+
+                    keyPress();
                     break;
                 case 8:
-                    System.out.println();
+                    System.out.println("Transferências entre contas\n ");
+                    System.out.println("Digite o numero da conta de origem:\n");
+                    numero = scanner.nextInt();
+                    System.out.println("Digite o número da conta de destino: ");
+                    numeroDestino = scanner.nextInt();
+
+                    do{
+                    System.out.println("Digite o valor de tranferência: ");
+                    valor = scanner.nextFloat();
+                    }while(valor <= 0);
+
+                    contas.transferir(numero, (int) numeroDestino, valor);
+
                     break;
                 case 9:
                     System.out.println("ADIOS");
