@@ -45,7 +45,7 @@ public class Menu {
                     "8- Transferir valores entre contas\n" +
                     "9- Sair\n" + Cores.TEXT_PURPLE_BOLD_BRIGHT+
                     "********************************************\n" +
-                    "Entre com uma opção: \n"
+                    "Entre com uma opção: \n"+Cores.TEXT_RESET
 
             );
             seletor = scanner.nextInt();
