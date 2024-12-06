@@ -32,6 +32,7 @@ public class Postagem {
     private Tema tema;
 
     public Long getId() {
+
         return id;
     }
 
