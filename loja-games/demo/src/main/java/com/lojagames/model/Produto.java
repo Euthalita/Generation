@@ -1,6 +1,4 @@
 package com.lojagames.model;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -17,13 +15,12 @@ public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @NotBlank
     @Size(max=100)
     private String nome;
 
-    @NotBlank
     private Long preco;
 
     @UpdateTimestamp
@@ -33,11 +30,11 @@ public class Produto {
     @JsonIgnoreProperties("produto")
     private Categoria categoria;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public Produto setId(Integer id) {
+    public Produto setId(Long id) {
         this.id = id;
         return this;
     }
@@ -55,7 +52,7 @@ public class Produto {
         return preco;
     }
 
-    public Produto setPreco( Long preco) {
+    public Produto setPreco(Long preco) {
         this.preco = preco;
         return this;
     }
