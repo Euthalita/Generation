@@ -1,9 +1,7 @@
 package com.generation.blogpessoal.service;
 
-import com.generation.blogpessoal.model.Usuario;
-import com.generation.blogpessoal.model.UsuarioLogin;
-import com.generation.blogpessoal.repository.UsuarioRepository;
-import com.generation.blogpessoal.security.JwtService;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,10 +11,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
+import com.generation.blogpessoal.model.UsuarioLogin;
+import com.generation.blogpessoal.model.Usuario;
+import com.generation.blogpessoal.repository.UsuarioRepository;
+import com.generation.blogpessoal.security.JwtService;
 
 @Service
 public class UsuarioService {
+
     @Autowired
     private UsuarioRepository usuarioRepository;
 
@@ -63,9 +65,11 @@ public class UsuarioService {
         Authentication authentication = authenticationManager.authenticate(credenciais);
 
         if (authentication.isAuthenticated()) {
+
             Optional<Usuario> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
 
             if (usuario.isPresent()) {
+
                 usuarioLogin.get().setId(usuario.get().getId());
                 usuarioLogin.get().setNome(usuario.get().getNome());
                 usuarioLogin.get().setFoto(usuario.get().getFoto());
@@ -73,14 +77,21 @@ public class UsuarioService {
                 usuarioLogin.get().setSenha("");
 
                 return usuarioLogin;
+
             }
+
         }
+
         return Optional.empty();
+
     }
 
     private String criptografarSenha(String senha) {
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
         return encoder.encode(senha);
+
     }
 
     private String gerarToken(String usuario) {

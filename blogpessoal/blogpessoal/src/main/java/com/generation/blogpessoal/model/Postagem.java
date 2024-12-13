@@ -1,27 +1,34 @@
 package com.generation.blogpessoal.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import java.time.LocalDateTime;
+
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table( name = "tb_postagens")
+@Table(name = "tb_postagens")
 public class Postagem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(min = 5, max= 100)
+    @NotBlank(message = "O atributo título é Obrigatório!")
+    @Size(min = 5, max = 100, message = "O atributo título deve conter no mínimo 05 e no máximo 100 caracteres")
     private String titulo;
 
-    @NotBlank
-    @Size(min=5, max =1000)
+    @NotBlank(message = "O atributo texto é Obrigatório!")
+    @Size(min = 10, max = 1000, message = "O atributo texto deve conter no mínimo 10 e no máximo 1000 caracteres")
     private String texto;
 
     @UpdateTimestamp
@@ -36,8 +43,7 @@ public class Postagem {
     private Usuario usuario;
 
     public Long getId() {
-
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -45,7 +51,7 @@ public class Postagem {
     }
 
     public String getTitulo() {
-        return titulo;
+        return this.titulo;
     }
 
     public void setTitulo(String titulo) {
@@ -53,7 +59,7 @@ public class Postagem {
     }
 
     public String getTexto() {
-        return texto;
+        return this.texto;
     }
 
     public void setTexto(String texto) {
@@ -61,7 +67,7 @@ public class Postagem {
     }
 
     public LocalDateTime getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(LocalDateTime data) {
@@ -69,7 +75,7 @@ public class Postagem {
     }
 
     public Tema getTema() {
-        return tema;
+        return this.tema;
     }
 
     public void setTema(Tema tema) {
@@ -77,11 +83,11 @@ public class Postagem {
     }
 
     public Usuario getUsuario() {
-        return usuario;
+        return this.usuario;
     }
 
-    public Postagem setUsuario(Usuario usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-        return this;
     }
+
 }

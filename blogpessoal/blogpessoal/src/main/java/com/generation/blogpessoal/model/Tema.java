@@ -1,18 +1,28 @@
 package com.generation.blogpessoal.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_temas")
 public class Tema {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//é como se fosse o autoincremente do banco de dados, gera  id automaticamente em sequencia
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull (message = "É obrigatorio a descrição!")//aceita espaços, o notblank não aceita ir sem nada
+    @NotNull(message = "O Atributo Descrição é obrigatório")
     private String descricao;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tema", cascade = CascadeType.REMOVE)
@@ -20,7 +30,7 @@ public class Tema {
     private List<Postagem> postagem;
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -28,7 +38,7 @@ public class Tema {
     }
 
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
 
     public void setDescricao(String descricao) {
@@ -44,3 +54,6 @@ public class Tema {
     }
 
 }
+
+
+
